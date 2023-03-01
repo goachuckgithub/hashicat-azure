@@ -116,6 +116,7 @@ resource "azurerm_linux_virtual_machine" "catapp" {
   disable_password_authentication = false
   network_interface_ids           = [azurerm_network_interface.catapp-nic.id]
   department = devops
+  billable = true
   source_image_reference {
     publisher = var.image_publisher
     offer     = var.image_offer
