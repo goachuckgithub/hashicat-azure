@@ -115,9 +115,7 @@ resource "azurerm_linux_virtual_machine" "catapp" {
   admin_password                  = var.admin_password
   disable_password_authentication = false
   network_interface_ids           = [azurerm_network_interface.catapp-nic.id]
-  department = "devops"
-  billable = "true"
-  source_image_reference {
+   source_image_reference {
     publisher = var.image_publisher
     offer     = var.image_offer
     sku       = var.image_sku
@@ -131,7 +129,10 @@ resource "azurerm_linux_virtual_machine" "catapp" {
 
   }
 
-  tags = {}
+  tags = {
+    department = "devops"
+    billable = "true"
+  }
 
   # Added to allow destroy to work correctly.
   depends_on = [azurerm_network_interface_security_group_association.catapp-nic-sg-ass]
